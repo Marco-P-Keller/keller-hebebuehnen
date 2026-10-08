@@ -274,7 +274,8 @@
     onSuccess: function (p) {
       form.hidden = true; $('.wizard-steps').hidden = true; $('.wizard-bar').hidden = true;
       var done = $('[data-success]'); done.hidden = false;
-      $('[data-success-text]').innerHTML = 'Ihre Anfrage für die <b>' + p['Maschine'].split(' (')[0] + '</b> vom ' + p['Mietbeginn'] + ' bis ' + p['Mietende'] + ' ist bei uns. Wir melden uns so rasch wie möglich unter ' + p['Telefon'] + '.';
+      $('[data-success-text]').innerHTML = 'Ihre Anfrage für die <b>' + p['Maschine'].split(' (')[0] + '</b> vom ' + p['Mietbeginn'] + ' bis ' + p['Mietende'] + ' ist eingegangen.' +
+        ' Wir melden uns so rasch wie möglich bei Ihnen. Fragen? <a href="' + K.CONFIG.phoneHref + '">' + K.CONFIG.phone + '</a> oder <a href="mailto:' + K.CONFIG.inquiryTo + '">' + K.CONFIG.inquiryTo + '</a>' + '.';
       var holder = $('[data-done-lift]'); holder.innerHTML = '';
       var id = form.querySelector('input[name="maschine"]:checked').value;
       var dl = KLift.create(holder, { model: id, crew: true, viewBox: [-260, -1900, 960, 1940] });

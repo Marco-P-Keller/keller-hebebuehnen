@@ -227,7 +227,8 @@
   var bf = KBooking.form(form, {
     calendar: cal, scrollOffset: 100,
     onSuccess: function (p) {
-      $('[data-success-text]').innerHTML = 'Ihre Anfrage für die <b>' + p['Maschine'].split(' (')[0] + '</b> vom ' + p['Mietbeginn'] + ' bis ' + p['Mietende'] + ' ist bei uns. Wir melden uns so rasch wie möglich unter ' + p['Telefon'] + ' oder ' + p['email'] + '.';
+      $('[data-success-text]').innerHTML = 'Ihre Anfrage für die <b>' + p['Maschine'].split(' (')[0] + '</b> vom ' + p['Mietbeginn'] + ' bis ' + p['Mietende'] + ' ist eingegangen.' +
+        ' Wir melden uns so rasch wie möglich bei Ihnen. Fragen? <a href="' + K.CONFIG.phoneHref + '">' + K.CONFIG.phone + '</a> oder <a href="mailto:' + K.CONFIG.inquiryTo + '">' + K.CONFIG.inquiryTo + '</a>' + '.';
       form.hidden = true; thanks.hidden = false;
       toEl($('.request-card'), 90);
       thanks.focus({ preventScroll: true });
