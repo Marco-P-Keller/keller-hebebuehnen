@@ -458,3 +458,7 @@ button, input, textarea { font: inherit; color: inherit; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; }
   .intro-title .ln > span { transform: none; }
 }
+
+/* ---------- Reichweite ---------- */
+.reach-box { margin-top: clamp(28px, 4vw, 48px); }
+.reach .rx { --rx-bg: var(--stone); --rx-panel: var(--stone); --rx-c1: #A03402; --rx-c2: #2F6FB0; --rx-c3: #17342A; --rx-accent: var(--forest); --rx-ok: #17342A; --rx-ok-soft: #DDE4D7; --rx-track: #E2E6DF; --rx-radius: 28px; --rx-font: var(--font); }

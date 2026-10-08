@@ -23,7 +23,7 @@
         navLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id); });
       });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['maschinen', 'preise', 'ablauf', 'anfrage', 'fragen', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) secObs.observe(s); });
+    ['maschinen', 'reichweite', 'preise', 'ablauf', 'anfrage', 'fragen', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) secObs.observe(s); });
   }
 
   var menuBtn = $('[data-menu-btn]'), menu = $('[data-menu]');
@@ -296,6 +296,9 @@
     var y = target.getBoundingClientRect().top + window.pageYOffset - 70;
     window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
   }
+
+  /* ---------- Reichweite ---------- */
+  KReach.create($('[data-reach]'), { onRequest: requestMachine });
 
   /* ---------- Ablauf: Fortschrittslinie ---------- */
   var steps = $('[data-steps]'), stepEls = $$('.step', steps);

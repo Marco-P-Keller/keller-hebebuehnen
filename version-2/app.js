@@ -34,7 +34,7 @@
     var so = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) navLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id); }); });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['top', 'flotte', 'preise', 'anfrage', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
+    ['top', 'flotte', 'reichweite', 'preise', 'anfrage', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
   }
 
   /* ---------- Szene ---------- */
@@ -222,6 +222,9 @@
     if (open) setTimeout(function () { var r = specsBody.getBoundingClientRect(); if (r.top > window.innerHeight * .7) smooth(r.top + window.pageYOffset - 120); }, 30);
   });
   $('[data-fleet-request]').addEventListener('click', function () { requestMachine(current); });
+
+  /* ---------- Reichweite ---------- */
+  KReach.create($('[data-reach]'), { onRequest: function (id) { requestMachine(id); } });
 
   /* ---------- Preise ---------- */
   var cardsEl = $('[data-price-cards]'), amounts = [];

@@ -51,7 +51,7 @@
     var so = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) navLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id); }); });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['top', 'finder', 'maschinen', 'vergleich', 'preise', 'anfrage', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
+    ['top', 'finder', 'reichweite', 'maschinen', 'vergleich', 'preise', 'anfrage', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
   }
 
   /* ---------- Hero-Titel wortweise ---------- */
@@ -184,6 +184,9 @@
   if (window.ResizeObserver) new ResizeObserver(drawGrid).observe(canvas);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawGrid);
   onView(canvas, function () { finderSeen = true; updateFinder(); }, .3);
+
+  /* ---------- Reichweite ---------- */
+  KReach.create($('[data-reach]'), { onRequest: function (id) { requestMachine(id); } });
 
   /* ---------- Maschinen-Spotlights ---------- */
   var SPOT = {

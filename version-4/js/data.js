@@ -17,13 +17,17 @@
     email: 'info@keller-holzbau.ch',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Wilerstrasse+82,+8370+Sirnach',
 
-    /* Anfragen werden per E-Mail an diese Adressen geschickt. */
-    inquiryTo: 'marco.p.keller@gmail.com',
-    inquiryCc: 'stefan@keller-leimbau.com',
-    /* FormSubmit.co (kostenlos, ohne Server). Beim allerersten Absenden
-       schickt FormSubmit einmalig eine Bestätigungs-Mail an inquiryTo –
-       Link anklicken, danach kommen alle Anfragen an beide Adressen. */
-    formEndpoint: 'https://formsubmit.co/ajax/marco.p.keller@gmail.com',
+    /* Anfragen gehen an Stefan, Kopie an Marco. */
+    inquiryTo: 'stefan@keller-holzbau.ch',
+    inquiryCc: 'marco.p.keller@gmail.com',
+    /* Versand 1 (bevorzugt): Google Apps Script im Konto marco.p.keller@gmail.com
+       – gestaltete HTML-Mails an Keller + Bestätigung an den Kunden.
+       Leer lassen, solange das Skript nicht bereitgestellt ist. */
+    appsScriptUrl: '',
+    /* Versand 2 (Ersatz): FormSubmit.co, aktiviert für marco.p.keller@gmail.com
+       (Kennung statt E-Mail-Adresse), Kopie an stefan@keller-holzbau.ch. */
+    formEndpoint: 'https://formsubmit.co/ajax/364e41efe9791e42e9e6a31193586875',
+    formCc: 'stefan@keller-holzbau.ch',
 
     vatRate: 0.081,          /* Schweizer MwSt. seit 1.1.2024 */
     deductible: 1000,        /* Versicherung Selbstbehalt CHF */
@@ -103,7 +107,9 @@
           ['Hydraulikdruck', '', '340 bar']
         ]}
       ],
-      footnote: '* Variiert und ist abhängig von den länderspezifischen Optionen. ** Richtwert. Entspricht den europäischen Richtlinien 2006/42/EG (EN 280:2013), 2004/108/EG (EMV) und 2006/95/EG (Niederspannung).'
+      footnote: '* Variiert und ist abhängig von den länderspezifischen Optionen. ** Richtwert. Entspricht den europäischen Richtlinien 2006/42/EG (EN 280:2013), 2004/108/EG (EMV) und 2006/95/EG (Niederspannung).',
+      /* Arbeitsbereich gemäss Lastdiagramm: [seitlicher Abstand ab Drehmitte, Arbeitshöhe] in m */
+      envelope: [[0, 0], [0, 18.19], [3.9, 18.19], [5, 17.6], [6, 17], [7, 15.9], [8, 14.6], [9, 12.9], [9.6, 11.8], [10.1, 10.4], [10.4, 9], [10.51, 7.5], [10.51, 2.5], [10.35, 1.5], [9.9, 0.6], [9, 0]]
     },
     {
       id: 'atj160',
@@ -179,7 +185,8 @@
           ['Schwingungsbelastung Hand / Arm', '', '< 0.50 m/s²']
         ]}
       ],
-      footnote: '* Variiert und ist abhängig von den länderspezifischen Optionen. ** Richtwert. Entspricht den europäischen Richtlinien 2006/42/EG (EN 280:2013), 2004/108/EG (EMV) und 2006/95/EG (Niederspannung).'
+      footnote: '* Variiert und ist abhängig von den länderspezifischen Optionen. ** Richtwert. Entspricht den europäischen Richtlinien 2006/42/EG (EN 280:2013), 2004/108/EG (EMV) und 2006/95/EG (Niederspannung).',
+      envelope: [[0, 0], [0, 16.21], [3.3, 16.21], [4, 16], [5, 15.4], [6, 14.7], [7, 13.9], [7.6, 13], [8, 12], [8.3, 11], [8.45, 10], [8.52, 9], [8.52, 3], [8.4, 2], [8, 1.1], [7.3, 0.3], [7, 0]]
     },
     {
       id: 'goldlift',
@@ -244,7 +251,10 @@
           ['Elektromotor', '', '230 V / 2.2 kW / 13.5 Ah']
         ]}
       ],
-      footnote: 'Leistungsdaten abhängig von der Korblast: 120 kg (1 Person à 80 kg + 40 kg Werkzeug) bzw. 200 kg (2 Personen à 80 kg + 40 kg Werkzeug).'
+      footnote: 'Leistungsdaten abhängig von der Korblast: 120 kg (1 Person à 80 kg + 40 kg Werkzeug) bzw. 200 kg (2 Personen à 80 kg + 40 kg Werkzeug).',
+      /* 1 Person (120 kg) bzw. 2 Personen (200 kg) */
+      envelope: [[0, 0], [0, 14], [1, 14], [2, 13.6], [3, 13.1], [4, 12.3], [5, 11], [5.6, 10], [5.95, 9], [6.15, 8], [6.25, 7.2], [6, 6.5], [5.2, 5.7], [4.6, 5], [4.5, 4.4], [6, 4.3], [6, 0.6], [5.6, 0]],
+      envelope2: [[0, 0], [0, 12.6], [1.9, 12.6], [3, 11.9], [4, 10.9], [5, 9.3], [5.5, 8], [5.7, 6.8], [5.3, 5.9], [4.4, 5], [4.2, 4.2], [4.15, 3], [4.15, 0.6], [3.8, 0]]
     }
   ];
 

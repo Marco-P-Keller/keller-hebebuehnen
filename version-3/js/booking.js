@@ -336,12 +336,16 @@
       var who = val('firma') || val('name');
       return {
         _subject: 'Anfrage Hebebühne: ' + m.name + ' · ' + period + ' · ' + who,
-        _cc: cfg.inquiryCc,
-        _template: 'table',
+        _cc: cfg.formCc,
+        _template: 'box',
         _captcha: 'false',
         _honey: val('_honey'),
         _replyto: val('email'),
-        _autoresponse: 'Guten Tag ' + val('name') + '\n\nVielen Dank für Ihre Anfrage für die ' + m.brand + ' ' + m.name + ' (' + period + ', ' + r.days + (r.days === 1 ? ' Tag' : ' Tage') + '). Wir prüfen die Verfügbarkeit und melden uns so rasch wie möglich bei Ihnen.\n\nFreundliche Grüsse\n' + cfg.company + ' – ' + cfg.tagline + '\n' + cfg.operator + ', ' + cfg.street + ', ' + cfg.city + '\nTel. ' + cfg.phone,
+        _autoresponse: 'Guten Tag ' + val('name') + '\n\nVielen Dank für Ihre Anfrage – sie ist bei uns eingegangen.\n\n' +
+          'Hebebühne: ' + m.brand + ' ' + m.name + '\nZeitraum: ' + fmtLong(r.start) + ' – ' + fmtLong(r.end) + ' (' + r.days + (r.days === 1 ? ' Tag' : ' Tage') + ')\n' +
+          'Richtpreis: CHF ' + K.chf(est.net) + ' exkl. MwSt. (ohne Treibstoff und Transport)\nEinsatzort: ' + val('einsatzort') + '\n\n' +
+          'Wir prüfen die Verfügbarkeit und melden uns so rasch wie möglich bei Ihnen. Diese Nachricht bestätigt den Eingang Ihrer Anfrage und ist noch keine Reservation.\n\n' +
+          'Freundliche Grüsse\n' + cfg.company + ' – ' + cfg.tagline + '\n' + cfg.operator + ', ' + cfg.street + ', ' + cfg.city + '\nTel. ' + cfg.phone + ' · ' + cfg.email,
         'Maschine': m.brand + ' ' + m.name + ' (' + m.type + ', ' + m.workHeight.toFixed(2) + ' m Arbeitshöhe)',
         'Mietbeginn': fmtLong(r.start),
         'Mietende': fmtLong(r.end),
@@ -356,6 +360,23 @@
         'Telefon': val('telefon'),
         'Nachricht': val('nachricht') || '–',
         'Gesendet von': location.href.split('#')[0]
+      };
+    }
+
+    /* Strukturierte Daten für das Google-Apps-Script */
+    function scriptData() {
+      var r = cal.get();
+      var m = K.byId(machineId());
+      var est = K.estimate(m.id, r.days);
+      var transport = f.querySelector('input[name="transport"]:checked');
+      return {
+        machine: m.name, brand: m.brand, workHeight: m.workHeight.toFixed(2),
+        period: fmtNum(r.start) + (r.days > 1 ? ' – ' + fmtNum(r.end) : ''),
+        start: fmtLong(r.start), end: fmtLong(r.end), days: r.days,
+        rate: 'CHF ' + K.chf(est.rate) + ' / Tag', net: 'CHF ' + K.chf(est.net), gross: 'CHF ' + K.chf(est.gross, true),
+        transport: transport ? transport.value : '', einsatzort: val('einsatzort'),
+        name: val('name'), firma: val('firma'), email: val('email'), telefon: val('telefon'), nachricht: val('nachricht'),
+        page: location.href.split('#')[0], honey: val('_honey')
       };
     }
 
@@ -378,7 +399,12 @@
       submit.setAttribute('aria-busy', 'true');
       var ctrl = window.AbortController ? new AbortController() : null;
       var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
-      fetch(cfg.formEndpoint, {
+      var useScript = !!cfg.appsScriptUrl;
+      fetch(useScript ? cfg.appsScriptUrl : cfg.formEndpoint, useScript ? {
+        method: 'POST',
+        body: JSON.stringify(scriptData()), /* text/plain: kein CORS-Preflight */
+        signal: ctrl ? ctrl.signal : undefined
+      } : {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify(payload),

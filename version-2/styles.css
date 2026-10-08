@@ -514,3 +514,13 @@ button, input, textarea { font: inherit; color: inherit; }
   .scene { height: auto; }
   .scene-pin { position: relative; }
 }
+
+/* ---------- Reichweite ---------- */
+.reach { background: #0D1424; border-top: 1px solid var(--line); }
+.reach .rx { --rx-bg: #0F1727; --rx-panel: var(--night-2); --rx-ink: #EEF2F8; --rx-ink-2: #B5C1D6; --rx-ink-3: #8392AD; --rx-line: rgba(196, 210, 235, .08); --rx-line-2: rgba(196, 210, 235, .18);
+  --rx-c1: #FF6B57; --rx-c2: #F4A63A; --rx-c3: #5BD19A; --rx-accent: #EEF2F8; --rx-ok: #5BD19A; --rx-ok-soft: rgba(91, 209, 154, .1); --rx-no: #FF8A7A; --rx-no-soft: rgba(255, 138, 122, .1); --rx-track: rgba(255, 255, 255, .12); --rx-radius: 20px; }
+.reach .rx-chart, .reach .rx-side { border: 1px solid var(--line); }
+.reach .rx-fill { fill-opacity: .12; }
+.reach .rx-shape.is-ok .rx-fill { fill-opacity: .22; }
+.reach .rx-seg input:checked + span { background: var(--amber); color: var(--amber-ink); }
+.reach .rx-ibtn { background: var(--amber); color: var(--amber-ink); }

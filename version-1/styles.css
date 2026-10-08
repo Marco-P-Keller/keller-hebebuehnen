@@ -620,3 +620,7 @@ button, input, textarea, select { font: inherit; color: inherit; }
   .reveal { opacity: 1; transform: none; }
   .hero-title .w > span { transform: none; }
 }
+
+/* ---------- Reichweite ---------- */
+.reach-section .rx { --rx-c1: #A03402; --rx-c2: #2F6FB0; --rx-c3: #2E7D4F; --rx-accent: #1B1F23; --rx-line: #E4E8E9; --rx-line-2: #CDD3D6; --rx-ink-3: #7A838B; --rx-radius: 20px; --rx-track: #E3E7E5; }
+.reach-section .rx-chart, .reach-section .rx-side { border: 1px solid var(--line); }

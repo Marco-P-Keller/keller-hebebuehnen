@@ -33,7 +33,7 @@
     var so = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) navLinks.forEach(function (a) { a.classList.toggle('is-active', a.getAttribute('href') === '#' + e.target.id); }); });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['maschinen', 'finder', 'preise', 'anfrage', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
+    ['maschinen', 'finder', 'reichweite', 'preise', 'anfrage', 'kontakt'].forEach(function (id) { var s = document.getElementById(id); if (s) so.observe(s); });
   }
 
   /* ---------- Intro-Titel zeilenweise ---------- */
@@ -206,6 +206,9 @@
     $$('#finder input[type=radio]').forEach(function (r) { r.checked = false; });
     evaluate(); toEl($('#finder'), 80);
   });
+
+  /* ---------- Reichweite ---------- */
+  KReach.create($('[data-reach]'), { onRequest: function (id) { requestMachine(id); } });
 
   /* ---------- Anfrage ---------- */
   var pills = $('[data-pills]'), minis = {};

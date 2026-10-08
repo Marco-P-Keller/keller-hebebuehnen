@@ -497,3 +497,6 @@ button, input, textarea { font: inherit; color: inherit; }
   [data-reveal] { opacity: 1; transform: none; filter: none; }
   .hero-title .w { opacity: 1; transform: none; filter: none; }
 }
+
+/* ---------- Reichweite ---------- */
+.reach .rx { --rx-bg: var(--stone); --rx-panel: var(--stone); --rx-c1: #A03402; --rx-c2: #2F6FB0; --rx-c3: #17342A; --rx-accent: var(--ink); --rx-ok: #2E7D4F; --rx-track: #E2E6DF; --rx-radius: 28px; }

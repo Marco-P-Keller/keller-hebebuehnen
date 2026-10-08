@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="reach.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -28,6 +29,7 @@
       <nav class="nav" aria-label="Hauptnavigation">
         <a href="#maschinen">Maschinen</a>
         <a href="#finder">Welche passt?</a>
+        <a href="#reichweite">Reichweite</a>
         <a href="#preise">Preise</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
@@ -39,6 +41,7 @@
     <nav aria-label="Mobile Navigation">
       <a href="#maschinen">Maschinen</a>
       <a href="#finder">Welche passt?</a>
+      <a href="#reichweite">Reichweite</a>
       <a href="#preise">Preise</a>
       <a href="#anfrage">Anfrage</a>
       <a href="#kontakt">Kontakt</a>
@@ -116,6 +119,15 @@
             </div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <!-- ============ REICHWEITE ============ -->
+    <section class="section reach" id="reichweite" aria-labelledby="reach-title">
+      <div class="wrap">
+        <h2 class="section-title" id="reach-title">Wie weit kommt die Bühne?</h2>
+        <p class="section-lead">Ziehen Sie den Punkt dorthin, wo Sie arbeiten müssen – Höhe und seitlicher Abstand. Die Flächen zeigen den Arbeitsbereich jeder Bühne gemäss Lastdiagramm des Herstellers.</p>
+        <div class="reach-box" data-reach></div>
       </div>
     </section>
 
@@ -268,7 +280,7 @@
   <template id="legal-datenschutz">
     <p>Wir bearbeiten Personendaten nach dem Schweizer Datenschutzgesetz (DSG).</p>
     <h3>Anfrageformular</h3>
-    <p>Wenn Sie uns eine Anfrage senden, übermitteln wir Ihre Angaben (Name, Firma, Kontaktdaten, Einsatzort, Mietzeitraum, Nachricht) per E-Mail an uns. Für den Versand nutzen wir den Dienst FormSubmit (formsubmit.co); dabei können Daten in Länder ausserhalb der Schweiz übermittelt werden. Wir verwenden Ihre Angaben ausschliesslich zur Bearbeitung Ihrer Anfrage und zur Vertragsabwicklung.</p>
+    <p>Wenn Sie uns eine Anfrage senden, übermitteln wir Ihre Angaben (Name, Firma, Kontaktdaten, Einsatzort, Mietzeitraum, Nachricht) per E-Mail an uns. Für den Versand nutzen wir die Dienste Google (Gmail) und FormSubmit (formsubmit.co); dabei können Daten in Länder ausserhalb der Schweiz übermittelt werden. Sie erhalten eine Eingangsbestätigung an Ihre E-Mail-Adresse. Wir verwenden Ihre Angaben ausschliesslich zur Bearbeitung Ihrer Anfrage und zur Vertragsabwicklung.</p>
     <h3>Schriften</h3>
     <p>Diese Website lädt Schriften von Google Fonts. Dabei wird Ihre IP-Adresse an Google übermittelt.</p>
     <h3>Cookies</h3>
@@ -280,6 +292,7 @@
   <script src="js/data.js"></script>
   <script src="js/lift.js"></script>
   <script src="js/booking.js"></script>
+  <script src="js/reach.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
