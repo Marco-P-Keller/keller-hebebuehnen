@@ -1,6 +1,6 @@
 # Keller Immo AG – Website Vermietung Hebebühnen
 
-Fünf Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 ATJ, Manitou 160 ATJ, Hinowa Goldlift 14.70).
+Sechs Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 ATJ, Manitou 160 ATJ, Hinowa Goldlift 14.70).
 
 | Ordner | Entwurf |
 |---|---|
@@ -9,6 +9,7 @@ Fünf Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 A
 | `version-3/` | Werkhof – Weiss/Waldgrün/Logo-Rot, aufklappbare Tafeln, Empfehlungs-Assistent |
 | `version-4/` | Klarheit – Mischung aus 1 und 3, alles offen auf einer Seite |
 | `version-5/` | Klarheit mit Fotos – Version 4 plus echte Einsatzfotos, Galerien, Lightbox. Fotos geprüft: nur aktuelle Flotte (180 ATJ und 160 ATJ rot, Goldlift); die frühere gelbe Bühne ist nicht mehr dabei |
+| `version-6/` | Seriös – neutrale Farben (kein Grün), kleine Radien; oben Symbolbilder von Wikimedia Commons, ab «Unsere Maschinen» die eigenen Fotos (einheitlich farbkorrigiert, Originalformat) |
 
 Jeder Ordner ist eigenständig (HTML, CSS, JS, Logo) und kann direkt auf einen Webserver kopiert werden. `shared/` enthält die gemeinsamen Quelldateien (Daten, Zeichnungen, Formular); nach Änderungen dort in die `js/`-Ordner der Versionen kopieren.
 
@@ -26,6 +27,10 @@ Zwei Versandwege (Einstellung in `shared/data.js`):
 `version-5/assets/img/` enthält WebP-Bilder in mehreren Breiten, erzeugt aus den Originalen im (nicht versionierten) Ordner `Fotos/`. Die Originale haben eine EXIF-Drehung; beim Umrechnen deshalb über ffmpeg gehen (dreht korrekt), nicht direkt mit `cwebp`.
 
 Vier Beispielbilder stammen von Wikimedia Commons (Lizenzen CC BY-SA 3.0 / 3.0 AT / 4.0). Die Lizenz verlangt Namensnennung: Urheber, Lizenz und Quelle stehen in `version-5/app.js` (`COMMONS`) und werden unter den Bildern und im Bildnachweis im Footer angezeigt – beim Entfernen oder Ersetzen dort mitpflegen.
+
+## Fotos (Version 6)
+
+Eigene Fotos wie in Version 5, aber mit einheitlicher Korrektur (ffmpeg: `normalize`, leicht mehr Kontrast, etwas weniger Sättigung, Schärfen). Die Symbolbilder (`c-*`) stammen von Wikimedia Commons (CC BY-SA 3.0 / 3.0 AT / 4.0); Urheber und Lizenz stehen in `version-6/app.js` (`COMMONS`), beim Titelbild direkt in `index.html`, und erscheinen unter den Bildern und im Bildnachweis.
 
 ## Reichweiten-Rechner
 
