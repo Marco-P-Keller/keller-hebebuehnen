@@ -1,6 +1,6 @@
 # Keller Immo AG – Website Vermietung Hebebühnen
 
-Sechs Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 ATJ, Manitou 160 ATJ, Hinowa Goldlift 14.70).
+Sieben Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 ATJ, Manitou 160 ATJ, Hinowa Goldlift 14.70).
 
 | Ordner | Entwurf |
 |---|---|
@@ -10,6 +10,7 @@ Sechs Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 A
 | `version-4/` | Klarheit – Mischung aus 1 und 3, alles offen auf einer Seite |
 | `version-5/` | Klarheit mit Fotos – Version 4 plus echte Einsatzfotos, Galerien, Lightbox. Fotos geprüft: nur aktuelle Flotte (180 ATJ und 160 ATJ rot, Goldlift); die frühere gelbe Bühne ist nicht mehr dabei |
 | `version-6/` | Seriös – neutrale Farben (kein Grün), kleine Radien; oben Symbolbilder von Wikimedia Commons, ab «Unsere Maschinen» die eigenen Fotos (einheitlich farbkorrigiert, Originalformat) |
+| `version-7/` | Seriös, reduziert – wie Version 6, aber nur 6 Symbolbilder und ausschliesslich rote Bühnen (keine blauen/gelben Fremdmaschinen) |
 
 Jeder Ordner ist eigenständig (HTML, CSS, JS, Logo) und kann direkt auf einen Webserver kopiert werden. `shared/` enthält die gemeinsamen Quelldateien (Daten, Zeichnungen, Formular); nach Änderungen dort in die `js/`-Ordner der Versionen kopieren.
 
