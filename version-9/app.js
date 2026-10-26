@@ -35,7 +35,7 @@
   /* Name: [Breite, Höhe, verfügbare Breiten als WebP] */
   var PH = {
     '180-werkhof': [2400, 3200, [800, 1400]], '180-dach': [2400, 1800, [800, 1600]], '180-holzlager': [2400, 1800, [800, 1600]], 'transport': [2400, 1800, [800, 1600]],
-    '160-fassade': [2400, 1800, [800, 1600]], '160-wohnblock': [2400, 1800, [800, 1600]],
+    '160-wohnblock': [2400, 1800, [800, 1600]],
     'goldlift-fassade': [2400, 3200, [800, 1400]], 'goldlift-halle': [2400, 1800, [800, 1600]], 'goldlift-stuetzen': [2400, 1800, [800, 1600]], 'goldlift-transport': [2400, 1800, [800, 1600]],
     'einsatz-altbau': [2400, 3200, [800, 1400]], 'einsatz-wohnhaus': [2400, 1800, [800, 1600]], 'einsatz-holzbau': [2400, 1800, [800, 1600]],
     'einsatz-hinterhof': [2400, 3200, [800, 1400]], 'einsatz-buero': [2400, 3200, [800, 1400]], 'einsatz-festzelt': [2400, 1800, [800, 1600]], 'einsatz-halle': [2400, 3200, [800, 1400]],
@@ -113,7 +113,7 @@
 
   /* ---------- Bühnen: drei Karten mit eigenen Fotos ---------- */
   var FLEET_PH = { atj180: 'fleet-180', atj160: 'fleet-160', goldlift: 'fleet-goldlift' };
-  var FLEET_ALT = { atj180: 'Unsere Manitou 180 ATJ an der Dachuntersicht eines Gebäudes', atj160: 'Unsere Manitou 160 ATJ vor einem Mehrfamilienhaus, der Korb an der Dachkante', goldlift: 'Unsere Hinowa Goldlift 14.70 an der Fassade eines Mehrfamilienhauses' };
+  var FLEET_ALT = { atj180: 'Unsere Manitou 180 ATJ an der Dachuntersicht eines Gebäudes', atj160: 'Unsere Manitou 160 ATJ vor einem Mehrfamilienhaus, der Korb über den Balkonen', goldlift: 'Unsere Hinowa Goldlift 14.70 an der Fassade eines Mehrfamilienhauses' };
   $('[data-fleet-list]').innerHTML = K.MACHINES.map(function (mm) {
     return '<li data-reveal><a class="fleet-card" href="#m-' + mm.id + '">' +
       '<span class="fleet-card-img">' + img(FLEET_PH[mm.id], FLEET_ALT[mm.id], '(max-width: 760px) 80vw, 33vw') + '</span>' +
@@ -222,9 +222,9 @@
 
   /* ---------- Maschinen-Spotlights ---------- */
   var SPOT = {
-    atj180: { photos: [['180-dach', 'Arbeiten an der Dachuntersicht – seitlich weit ausgefahren'], ['180-holzlager', 'Über das Holzlager hinweg bis zur Terrasse'], ['transport', 'Verladen auf dem Tieflader']],
+    atj180: { photos: [['180-dach', 'Arbeiten an der Dachuntersicht – seitlich weit ausgefahren'], ['180-holzlager', 'Über das Holzlager hinweg bis zur Terrasse'], ['180-werkhof', '«Miete mich!» – voll ausgefahren vor unserem Werkhof in Sirnach'], ['transport', 'Verladen auf dem Tieflader']],
       tag: 'Grösste Arbeitshöhe', pitch: '18 Meter Arbeitshöhe und über 10 Meter seitliche Reichweite – für Dach, Fassade und Baumpflege.', tone: '', facts: ['Allradantrieb & Allradlenkung', 'Korb 1.80 × 0.80 m', 'Kubota-Diesel, 18.5 kW', 'Oberwagen dreht 350°'], stats: [[18.19, 2, 'm', 'Arbeitshöhe'], [10.51, 2, 'm', 'Seitliche Reichweite'], [230, 0, 'kg', 'Korblast'], [45, 0, '%', 'Steigfähigkeit']] },
-    atj160: { photos: [['160-fassade', 'Fassade am Mehrfamilienhaus – der Korb reicht bis unters Dach'], ['160-wohnblock', 'Über die Balkone hinweg bis an die Dachkante']],
+    atj160: { photos: [['160-wohnblock', 'Über die Balkone hinweg bis an die Dachkante']],
       tag: 'Grösste Korblast', pitch: '408 kg Korblast und Platz für drei Personen im grössten Arbeitskorb – geeignet, wenn Material mit nach oben muss.', tone: 'stone', flip: true, facts: ['Grösster Korb: 2.30 × 0.90 m', 'Allradantrieb', 'Motor nach Stufe V', 'Steigfähigkeit 45 %'], stats: [[408, 0, 'kg', 'Korblast'], [3, 0, 'Pers.', 'Im Arbeitskorb'], [16.21, 2, 'm', 'Arbeitshöhe'], [8.52, 2, 'm', 'Seitliche Reichweite']] },
     goldlift: { photos: [['goldlift-fassade', 'Bis unters Dach eines Mehrfamilienhauses'], ['goldlift-halle', 'In der Halle – auf Raupen über den Industrieboden'], ['goldlift-stuetzen', 'Abgestützt auf vier Tellern – die Raupen heben vom Boden ab'], ['goldlift-transport', 'Eingefahren: nur 78 cm breit']],
       tag: 'Schmalste Bauweise', pitch: 'Auf Raupen, rund 1’700 kg leicht und mit Durchfahrt ab 85 cm – kommt durch Gartentore und Türen, auf Wunsch abgasfrei mit 230-V-Elektromotor.', tone: 'dark', facts: ['Raupenfahrwerk', 'Durchfahrt ab 0.85 m', 'Abstützbar bis 10° Neigung', 'Benzin- und Elektromotor'], stats: [[0.78, 2, 'm', 'Breite eingefahren'], [14, 2, 'm', 'Arbeitshöhe'], [1700, 0, 'kg', 'Gewicht'], [230, 0, 'V', 'Elektromotor, abgasfrei']] }
@@ -260,7 +260,7 @@
           '<div class="media-panel media-photo" role="tabpanel" id="p-' + mm.id + '-p" aria-labelledby="t-' + mm.id + '-p" data-panel="photo">' +
             '<button class="media-main zoom" type="button" data-lb-open="spot-' + mm.id + '" data-idx="0" aria-label="Foto vergrössern">' + img(S.photos[0][0], esc(S.photos[0][1]), '(max-width: 1024px) 100vw, 50vw') + '</button>' +
             '<p class="media-cap" data-media-cap></p>' +
-            '<div class="media-thumbs">' + S.photos.map(function (ph, k) {
+            '<div class="media-thumbs"' + (S.photos.length < 2 ? ' hidden' : '') + '>' + S.photos.map(function (ph, k) {
               return '<button class="media-thumb' + (k ? '' : ' is-on') + '" type="button" data-lb="spot-' + mm.id + '" data-src="' + large(ph[0]) + '" data-cap="' + esc(ph[1]) + '" data-ph="' + ph[0] + '" data-alt="' + esc(ph[1]) + '" aria-label="Foto ' + (k + 1) + ': ' + esc(ph[1]) + '" aria-pressed="' + (k ? 'false' : 'true') + '">' + img(ph[0], '', '110px') + '</button>';
             }).join('') + '</div>' +
           '</div>' +
