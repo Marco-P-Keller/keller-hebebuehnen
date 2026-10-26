@@ -34,9 +34,8 @@
   var IMG = 'assets/img/';
   /* Name: [Breite, Höhe, verfügbare Breiten als WebP] */
   var PH = {
-    'hero-180atj': [2400, 1800, [900, 1600, 2400]], 'flotte': [2400, 1800, [900, 1600, 2400]], 'flotte-hoch': [2400, 3200, [800, 1400]],
-    '180-dach': [2400, 1800, [800, 1600]], '180-holzlager': [2400, 1800, [800, 1600]], '180-sirnach': [2400, 3200, [800, 1600]],
-    '160-flotte': [1778, 2154, [800, 1400]], '160-seite-commons': [1920, 1440, [800, 1600]],
+    'hero-160atj': [2400, 1800, [900, 1600, 2400]], '160-wohnblock': [2400, 1800, [800, 1600]], '160-hoch': [1392, 1800, [700, 1200]],
+    '180-sirnach': [1800, 2400, [800, 1400]], '180-dach': [2400, 1800, [800, 1600]], '180-holzlager': [2400, 1800, [800, 1600]], 'transport': [2400, 1800, [800, 1600]],
     'goldlift-fassade': [2400, 3200, [800, 1400]], 'goldlift-halle': [2400, 1800, [800, 1600]], 'goldlift-stuetzen': [2400, 1800, [800, 1600]], 'goldlift-seite-commons': [1920, 1280, [800, 1600]],
     'einsatz-altbau': [2400, 3200, [800, 1400]], 'einsatz-wohnhaus': [2400, 1800, [800, 1600]], 'einsatz-holzbau': [2400, 1800, [800, 1600]],
     'einsatz-hinterhof': [2400, 3200, [800, 1400]], 'einsatz-buero': [2400, 3200, [800, 1400]], 'einsatz-festzelt': [2400, 1800, [800, 1600]], 'einsatz-halle': [2400, 3200, [800, 1400]],
@@ -44,7 +43,6 @@
   };
   /* Fremde Bilder von Wikimedia Commons – Lizenz verlangt Namensnennung */
   var COMMONS = {
-    '160-seite-commons': { author: 'Cjp24', file: 'Manitou_160ATJ.jpg', lic: 'CC BY-SA 4.0', licUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.de', title: 'Manitou 160 ATJ, eingefahren' },
     'goldlift-seite-commons': { author: 'Frank Vincentz', file: 'Pájara_La_Lajita_-_Oasis_Park_29_ies.jpg', lic: 'CC BY-SA 3.0', licUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.de', title: 'Hinowa Goldlift 14.70, eingefahren' },
     'commons-kirche': { author: 'Herzi Pinki', file: 'Church_Maria_Heilbrunn_-_interior_during_restoration.jpg', lic: 'CC BY-SA 3.0 AT', licUrl: 'https://creativecommons.org/licenses/by-sa/3.0/at/deed.de', title: 'Kirche Maria Heilbrunn während der Restaurierung' },
     'commons-maler': { author: 'Traumrune', file: 'Peintre_facade_2.JPG', lic: 'CC BY-SA 3.0', licUrl: 'https://creativecommons.org/licenses/by-sa/3.0/deed.de', title: 'Malerarbeiten an einer Fassade' },
@@ -125,13 +123,14 @@
     else ['goldlift', 'atj160', 'atj180'].forEach(function (id, k) { setTimeout(function () { gLifts[id].animateTo(1, 2800); }, 150 + k * 380); });
   }, .3);
 
-  /* ---------- Flotte: Kurzliste ---------- */
-  var FLEET_PH = { atj180: '180-dach', atj160: '160-flotte', goldlift: 'goldlift-fassade' };
+  /* ---------- Flotte: drei Fotokarten ---------- */
+  var FLEET_PH = { atj180: '180-sirnach', atj160: '160-hoch', goldlift: 'goldlift-fassade' };
   $('[data-fleet-list]').innerHTML = K.MACHINES.map(function (mm) {
-    return '<li data-reveal><a class="fleet-item" href="#m-' + mm.id + '">' +
-      '<span class="fleet-thumb">' + img(FLEET_PH[mm.id], '', '96px') + '</span>' +
-      '<span class="fleet-txt"><b>' + mm.name + '</b><small>' + mm.brand + ' · ' + mm.type + '</small></span>' +
-      '<span class="fleet-num"><b>' + mm.workHeight.toFixed(2) + '<small> m</small></b><small>ab CHF ' + K.chf(mm.priceLong) + '</small></span></a></li>';
+    return '<li data-reveal><a class="fleet-card" href="#m-' + mm.id + '">' +
+      '<span class="fleet-card-img">' + img(FLEET_PH[mm.id], esc(mm.brand + ' ' + mm.name + ' von Keller im Einsatz'), '(max-width: 760px) 100vw, 33vw') + '</span>' +
+      '<span class="fleet-card-body"><small>' + mm.brand + ' · ' + mm.type + '</small><b>' + mm.name + '</b>' +
+      '<span class="fleet-card-facts"><span><i>' + mm.workHeight.toFixed(2) + ' m</i>Arbeitshöhe</span><span><i>' + mm.payload + ' kg</i>Korblast</span><span><i>ab CHF ' + K.chf(mm.priceLong) + '</i>pro Tag</span></span>' +
+      '<span class="fleet-card-more">Zur Maschine</span></span></a></li>';
   }).join('');
 
   /* ---------- Finder ---------- */
@@ -234,9 +233,9 @@
 
   /* ---------- Maschinen-Spotlights ---------- */
   var SPOT = {
-    atj180: { photos: [['hero-180atj', 'Fassade am Mehrfamilienhaus – der Korb reicht bis unters Dach'], ['180-dach', 'Arbeiten an der Dachuntersicht'], ['180-holzlager', 'Über das Holzlager hinweg bis zur Terrasse'], ['180-sirnach', '«Miete mich!» – vor unserem Werkhof in Sirnach']],
+    atj180: { photos: [['180-sirnach', '«Miete mich!» – voll ausgefahren vor unserem Werkhof in Sirnach'], ['180-dach', 'Arbeiten an der Dachuntersicht'], ['180-holzlager', 'Über das Holzlager hinweg bis zur Terrasse'], ['transport', 'Verladen auf dem Tieflader']],
       tag: 'Die Höchste.', tone: '', facts: ['Allradantrieb & Allradlenkung', 'Korb 1.80 × 0.80 m', 'Kubota-Diesel, 18.5 kW', 'Oberwagen dreht 350°'], stats: [[18.19, 2, 'm', 'Arbeitshöhe'], [10.51, 2, 'm', 'Seitliche Reichweite'], [230, 0, 'kg', 'Korblast'], [45, 0, '%', 'Steigfähigkeit']] },
-    atj160: { photos: [['160-flotte', 'Die 160 ATJ (gelb) neben der 180 ATJ in Sirnach'], ['flotte-hoch', 'Voll ausgefahren: 160 ATJ, 180 ATJ und Goldlift (von links)'], ['160-seite-commons', 'Seitenansicht eingefahren – Beispielbild desselben Modells, nicht unsere Maschine']],
+    atj160: { photos: [['hero-160atj', 'Fassade am Mehrfamilienhaus – der Korb reicht bis unters Dach'], ['160-wohnblock', 'Über die Balkone hinweg bis an die Dachkante']],
       tag: 'Die Stärkste.', tone: 'stone', flip: true, facts: ['Grösster Korb: 2.30 × 0.90 m', 'Allradantrieb', 'Motor nach Stufe V', 'Steigfähigkeit 45 %'], stats: [[408, 0, 'kg', 'Korblast'], [3, 0, 'Pers.', 'Im Arbeitskorb'], [16.21, 2, 'm', 'Arbeitshöhe'], [8.52, 2, 'm', 'Seitliche Reichweite']] },
     goldlift: { photos: [['goldlift-fassade', 'Bis unters Dach eines Mehrfamilienhauses'], ['goldlift-halle', 'In der Halle – auf Raupen über den Industrieboden'], ['goldlift-stuetzen', 'Abgestützt auf vier Tellern – die Raupen heben vom Boden ab'], ['goldlift-seite-commons', 'Eingefahren auf Raupen – Beispielbild desselben Modells, nicht unsere Maschine']],
       tag: 'Die Schmalste.', tone: 'forest', facts: ['Raupenfahrwerk', 'Durchfahrt ab 0.85 m', 'Abstützbar bis 10° Neigung', 'Benzin- und Elektromotor'], stats: [[0.78, 2, 'm', 'Breite eingefahren'], [14, 2, 'm', 'Arbeitshöhe'], [1700, 0, 'kg', 'Gewicht'], [230, 0, 'V', 'Elektromotor, abgasfrei']] }

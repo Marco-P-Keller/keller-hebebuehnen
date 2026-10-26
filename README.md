@@ -8,7 +8,7 @@ Fünf Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 A
 | `version-2/` | Feierabend – dunkle Abendszene, Bühne fährt beim Scrollen hoch, Anfrage in 3 Schritten |
 | `version-3/` | Werkhof – Weiss/Waldgrün/Logo-Rot, aufklappbare Tafeln, Empfehlungs-Assistent |
 | `version-4/` | Klarheit – Mischung aus 1 und 3, alles offen auf einer Seite |
-| `version-5/` | Klarheit mit Fotos – Version 4 plus echte Einsatzfotos, Galerien, Lightbox |
+| `version-5/` | Klarheit mit Fotos – Version 4 plus echte Einsatzfotos, Galerien, Lightbox. Fotos geprüft: nur aktuelle Flotte (180 ATJ und 160 ATJ rot, Goldlift); die frühere gelbe Bühne ist nicht mehr dabei |
 
 Jeder Ordner ist eigenständig (HTML, CSS, JS, Logo) und kann direkt auf einen Webserver kopiert werden. `shared/` enthält die gemeinsamen Quelldateien (Daten, Zeichnungen, Formular); nach Änderungen dort in die `js/`-Ordner der Versionen kopieren.
 
@@ -25,7 +25,7 @@ Zwei Versandwege (Einstellung in `shared/data.js`):
 
 `version-5/assets/img/` enthält WebP-Bilder in mehreren Breiten, erzeugt aus den Originalen im (nicht versionierten) Ordner `Fotos/`. Die Originale haben eine EXIF-Drehung; beim Umrechnen deshalb über ffmpeg gehen (dreht korrekt), nicht direkt mit `cwebp`.
 
-Fünf Beispielbilder stammen von Wikimedia Commons (Lizenzen CC BY-SA 3.0 / 3.0 AT / 4.0). Die Lizenz verlangt Namensnennung: Urheber, Lizenz und Quelle stehen in `version-5/app.js` (`COMMONS`) und werden unter den Bildern und im Bildnachweis im Footer angezeigt – beim Entfernen oder Ersetzen dort mitpflegen.
+Vier Beispielbilder stammen von Wikimedia Commons (Lizenzen CC BY-SA 3.0 / 3.0 AT / 4.0). Die Lizenz verlangt Namensnennung: Urheber, Lizenz und Quelle stehen in `version-5/app.js` (`COMMONS`) und werden unter den Bildern und im Bildnachweis im Footer angezeigt – beim Entfernen oder Ersetzen dort mitpflegen.
 
 ## Reichweiten-Rechner
 
