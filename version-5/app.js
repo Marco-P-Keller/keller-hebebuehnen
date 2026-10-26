@@ -34,8 +34,9 @@
   var IMG = 'assets/img/';
   /* Name: [Breite, Höhe, verfügbare Breiten als WebP] */
   var PH = {
-    'hero-160atj': [2400, 1800, [900, 1600, 2400]], '160-wohnblock': [2400, 1800, [800, 1600]], '160-hoch': [1392, 1800, [700, 1200]],
-    '180-sirnach': [1800, 2400, [800, 1400]], '180-dach': [2400, 1800, [800, 1600]], '180-holzlager': [2400, 1800, [800, 1600]], 'transport': [2400, 1800, [800, 1600]],
+    'hero-180atj': [2448, 3264, [900, 1400, 1900]], '180-dach': [2400, 1800, [800, 1600]], '180-holzlager': [2400, 1800, [800, 1600]], 'transport': [2400, 1800, [800, 1600]],
+    '160-fassade': [2400, 1800, [800, 1600]], '160-wohnblock': [2400, 1800, [800, 1600]],
+    'fleet-180': [1200, 1500, [600, 1000]], 'fleet-160': [1200, 1500, [600, 1000]], 'fleet-goldlift': [1200, 1500, [600, 1000]],
     'goldlift-fassade': [2400, 3200, [800, 1400]], 'goldlift-halle': [2400, 1800, [800, 1600]], 'goldlift-stuetzen': [2400, 1800, [800, 1600]], 'goldlift-seite-commons': [1920, 1280, [800, 1600]],
     'einsatz-altbau': [2400, 3200, [800, 1400]], 'einsatz-wohnhaus': [2400, 1800, [800, 1600]], 'einsatz-holzbau': [2400, 1800, [800, 1600]],
     'einsatz-hinterhof': [2400, 3200, [800, 1400]], 'einsatz-buero': [2400, 3200, [800, 1400]], 'einsatz-festzelt': [2400, 1800, [800, 1600]], 'einsatz-halle': [2400, 3200, [800, 1400]],
@@ -49,7 +50,7 @@
     'commons-swatch': { author: 'MHM55', file: 'Swatch-Bienne-34-entretrien.jpg', lic: 'CC BY-SA 4.0', licUrl: 'https://creativecommons.org/licenses/by-sa/4.0/deed.de', title: 'Unterhalt am Swatch-Hauptsitz in Biel' }
   };
   function srcset(n) { return PH[n][2].map(function (w) { return IMG + n + '-' + w + '.webp ' + w + 'w'; }).join(', '); }
-  function large(n) { var z = PH[n][2]; return IMG + n + '-' + Math.min(z[z.length - 1], 1600) + '.webp'; }
+  function large(n) { var z = PH[n][2].filter(function (w) { return w <= 1600; }); return IMG + n + '-' + (z.length ? z[z.length - 1] : PH[n][2][0]) + '.webp'; }
   function img(n, alt, sizes) {
     var d = PH[n];
     return '<img src="' + IMG + n + '-' + d[2][0] + '.webp" srcset="' + srcset(n) + '" sizes="' + sizes + '" width="' + d[0] + '" height="' + d[1] + '" alt="' + alt + '" loading="lazy" decoding="async">';
@@ -124,10 +125,10 @@
   }, .3);
 
   /* ---------- Flotte: drei Fotokarten ---------- */
-  var FLEET_PH = { atj180: '180-sirnach', atj160: '160-hoch', goldlift: 'goldlift-fassade' };
+  var FLEET_PH = { atj180: 'fleet-180', atj160: 'fleet-160', goldlift: 'fleet-goldlift' };
   $('[data-fleet-list]').innerHTML = K.MACHINES.map(function (mm) {
     return '<li data-reveal><a class="fleet-card" href="#m-' + mm.id + '">' +
-      '<span class="fleet-card-img">' + img(FLEET_PH[mm.id], esc(mm.brand + ' ' + mm.name + ' von Keller im Einsatz'), '(max-width: 760px) 100vw, 33vw') + '</span>' +
+      '<span class="fleet-card-img">' + img(FLEET_PH[mm.id], esc(mm.brand + ' ' + mm.name + ' von Keller im Einsatz'), '(max-width: 760px) 80vw, 33vw') + '</span>' +
       '<span class="fleet-card-body"><small>' + mm.brand + ' · ' + mm.type + '</small><b>' + mm.name + '</b>' +
       '<span class="fleet-card-facts"><span><i>' + mm.workHeight.toFixed(2) + ' m</i>Arbeitshöhe</span><span><i>' + mm.payload + ' kg</i>Korblast</span><span><i>ab CHF ' + K.chf(mm.priceLong) + '</i>pro Tag</span></span>' +
       '<span class="fleet-card-more">Zur Maschine</span></span></a></li>';
@@ -233,9 +234,9 @@
 
   /* ---------- Maschinen-Spotlights ---------- */
   var SPOT = {
-    atj180: { photos: [['180-sirnach', '«Miete mich!» – voll ausgefahren vor unserem Werkhof in Sirnach'], ['180-dach', 'Arbeiten an der Dachuntersicht'], ['180-holzlager', 'Über das Holzlager hinweg bis zur Terrasse'], ['transport', 'Verladen auf dem Tieflader']],
+    atj180: { photos: [['180-dach', 'Arbeiten an der Dachuntersicht – seitlich weit ausgefahren'], ['180-holzlager', 'Über das Holzlager hinweg bis zur Terrasse'], ['hero-180atj', '«Miete mich!» – voll ausgefahren vor unserem Werkhof in Sirnach'], ['transport', 'Verladen auf dem Tieflader']],
       tag: 'Die Höchste.', tone: '', facts: ['Allradantrieb & Allradlenkung', 'Korb 1.80 × 0.80 m', 'Kubota-Diesel, 18.5 kW', 'Oberwagen dreht 350°'], stats: [[18.19, 2, 'm', 'Arbeitshöhe'], [10.51, 2, 'm', 'Seitliche Reichweite'], [230, 0, 'kg', 'Korblast'], [45, 0, '%', 'Steigfähigkeit']] },
-    atj160: { photos: [['hero-160atj', 'Fassade am Mehrfamilienhaus – der Korb reicht bis unters Dach'], ['160-wohnblock', 'Über die Balkone hinweg bis an die Dachkante']],
+    atj160: { photos: [['160-fassade', 'Fassade am Mehrfamilienhaus – der Korb reicht bis unters Dach'], ['160-wohnblock', 'Über die Balkone hinweg bis an die Dachkante']],
       tag: 'Die Stärkste.', tone: 'stone', flip: true, facts: ['Grösster Korb: 2.30 × 0.90 m', 'Allradantrieb', 'Motor nach Stufe V', 'Steigfähigkeit 45 %'], stats: [[408, 0, 'kg', 'Korblast'], [3, 0, 'Pers.', 'Im Arbeitskorb'], [16.21, 2, 'm', 'Arbeitshöhe'], [8.52, 2, 'm', 'Seitliche Reichweite']] },
     goldlift: { photos: [['goldlift-fassade', 'Bis unters Dach eines Mehrfamilienhauses'], ['goldlift-halle', 'In der Halle – auf Raupen über den Industrieboden'], ['goldlift-stuetzen', 'Abgestützt auf vier Tellern – die Raupen heben vom Boden ab'], ['goldlift-seite-commons', 'Eingefahren auf Raupen – Beispielbild desselben Modells, nicht unsere Maschine']],
       tag: 'Die Schmalste.', tone: 'forest', facts: ['Raupenfahrwerk', 'Durchfahrt ab 0.85 m', 'Abstützbar bis 10° Neigung', 'Benzin- und Elektromotor'], stats: [[0.78, 2, 'm', 'Breite eingefahren'], [14, 2, 'm', 'Arbeitshöhe'], [1700, 0, 'kg', 'Gewicht'], [230, 0, 'V', 'Elektromotor, abgasfrei']] }
@@ -325,11 +326,27 @@
     ['einsatz-buero', 'Bürogebäude, Fensterfront', 'Goldlift 14.70', 'tall'],
     ['einsatz-holzbau', 'Auf dem Holzbau-Rohbau', 'Goldlift 14.70', 'wide']
   ];
-  $('[data-bento]').innerHTML = BENTO.map(function (b) {
-    return '<figure class="bento-item bento-item--' + b[3] + '" data-reveal><button class="zoom" type="button" data-lb="einsatz" data-src="' + large(b[0]) + '" data-cap="' + esc(b[1] + ' – ' + b[2]) + '" aria-label="' + esc(b[1]) + ' vergrössern">' +
-      img(b[0], esc(b[1] + ', ' + b[2]), b[3] === 'big' ? '(max-width: 760px) 100vw, 50vw' : '(max-width: 760px) 100vw, 25vw') +
+  var bento = $('[data-bento]');
+  bento.innerHTML = BENTO.map(function (b) {
+    return '<figure class="bento-item" data-reveal data-ratio="' + (PH[b[0]][1] / PH[b[0]][0]) + '"><button class="zoom" type="button" data-lb="einsatz" data-src="' + large(b[0]) + '" data-cap="' + esc(b[1] + ' – ' + b[2]) + '" aria-label="' + esc(b[1]) + ' vergrössern">' +
+      img(b[0], esc(b[1] + ', ' + b[2]), '(max-width: 760px) 50vw, 33vw') +
       '</button><figcaption><b>' + b[1] + '</b><span>' + b[2] + '</span></figcaption></figure>';
   }).join('');
+  /* Fotos ungeschnitten in Spalten verteilen, jeweils in die kürzeste */
+  var bentoItems = $$('.bento-item', bento), bentoMq = window.matchMedia('(max-width: 760px)'), bentoN = 0;
+  function layoutBento() {
+    var n = bentoMq.matches ? 2 : 3; if (n === bentoN) return; bentoN = n;
+    var cols = [], h = [];
+    for (var k = 0; k < n; k++) { var c = document.createElement('div'); c.className = 'bento-col'; cols.push(c); h.push(0); }
+    bentoItems.forEach(function (it) {
+      var m = h.indexOf(Math.min.apply(null, h));
+      cols[m].appendChild(it); h[m] += +it.getAttribute('data-ratio') + .12;
+    });
+    bento.innerHTML = ''; cols.forEach(function (c) { bento.appendChild(c); });
+  }
+  layoutBento();
+  if (bentoMq.addEventListener) bentoMq.addEventListener('change', layoutBento); else bentoMq.addListener(layoutBento);
+
   var IDEAS = [
     ['commons-kirche', 'Restaurierung im Kirchenraum', 'Eine Raupenbühne derselben Bauart wie unsere Goldlift arbeitet mitten im Kirchenschiff, zwischen Bänken und Altären.'],
     ['commons-maler', 'Malerarbeiten an der Fassade', 'Eine Manitou-Gelenkbühne bringt den Maler über das Vordach hinweg an die Wand.'],
