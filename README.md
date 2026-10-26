@@ -1,6 +1,6 @@
 # Keller Immo AG – Website Vermietung Hebebühnen
 
-Vier Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 ATJ, Manitou 160 ATJ, Hinowa Goldlift 14.70).
+Fünf Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 ATJ, Manitou 160 ATJ, Hinowa Goldlift 14.70).
 
 | Ordner | Entwurf |
 |---|---|
@@ -8,6 +8,7 @@ Vier Entwürfe für die Vermietungs-Website der drei Hebebühnen (Manitou 180 AT
 | `version-2/` | Feierabend – dunkle Abendszene, Bühne fährt beim Scrollen hoch, Anfrage in 3 Schritten |
 | `version-3/` | Werkhof – Weiss/Waldgrün/Logo-Rot, aufklappbare Tafeln, Empfehlungs-Assistent |
 | `version-4/` | Klarheit – Mischung aus 1 und 3, alles offen auf einer Seite |
+| `version-5/` | Klarheit mit Fotos – Version 4 plus echte Einsatzfotos, Galerien, Lightbox |
 
 Jeder Ordner ist eigenständig (HTML, CSS, JS, Logo) und kann direkt auf einen Webserver kopiert werden. `shared/` enthält die gemeinsamen Quelldateien (Daten, Zeichnungen, Formular); nach Änderungen dort in die `js/`-Ordner der Versionen kopieren.
 
@@ -19,6 +20,12 @@ Zwei Versandwege (Einstellung in `shared/data.js`):
 
 1. **Google Apps Script** (`appsScriptUrl`, bevorzugt): gestaltete HTML-Mails, versendet aus dem Konto marco.p.keller@gmail.com. Code: `backend/apps-script.gs` (Projekt „Keller Hebebühnen – Anfragen“ im Google-Konto). Bereitstellen als Web-App (Ausführen als: Ich, Zugriff: Jeder) und die `/exec`-URL bei `appsScriptUrl` eintragen.
 2. **FormSubmit** (`formEndpoint`, Ersatz – aktiv, solange `appsScriptUrl` leer ist): aktiviert für marco.p.keller@gmail.com, Kopie an Stefan, Vorlage „box“, Text-Bestätigung an den Kunden.
+
+## Fotos (Version 5)
+
+`version-5/assets/img/` enthält WebP-Bilder in mehreren Breiten, erzeugt aus den Originalen im (nicht versionierten) Ordner `Fotos/`. Die Originale haben eine EXIF-Drehung; beim Umrechnen deshalb über ffmpeg gehen (dreht korrekt), nicht direkt mit `cwebp`.
+
+Fünf Beispielbilder stammen von Wikimedia Commons (Lizenzen CC BY-SA 3.0 / 3.0 AT / 4.0). Die Lizenz verlangt Namensnennung: Urheber, Lizenz und Quelle stehen in `version-5/app.js` (`COMMONS`) und werden unter den Bildern und im Bildnachweis im Footer angezeigt – beim Entfernen oder Ersetzen dort mitpflegen.
 
 ## Reichweiten-Rechner
 
